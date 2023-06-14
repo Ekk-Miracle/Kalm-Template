@@ -1,0 +1,14 @@
+- name: "Checkup"
+  hosts: all
+  tasks:
+  - name: "uptime"
+    command: uptime
+    register: result
+  - name: "debug"
+    debug:
+      var: result.stdout_lines
+  become: true
+  become_user: root
+  become_method: sudo
+
+  

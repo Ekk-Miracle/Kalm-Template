@@ -1,0 +1,95 @@
+{
+    "organization": [
+      {
+        "name": "kalm",
+        "projects": [
+          {
+            "name": "SUBPROJECT",
+            "description": "Keep Kalm and automate the SUBPROJECT",
+            "scm_type": "git",
+            "scm_url": "ssh://git@git.it.rm.dk:2222/jakhos/ansible_automation_SUBPROJECT.git",
+            "scm_branch": "main",
+            "credential": "git",
+            "master": "True"
+          }
+        ],
+        "inventories": [
+          {
+            "name": "xxx_SUBPROJECTinventory",
+            "description": "Inventorycontaining all servers under automation control and running SUBPROJECT",
+                  "variables": {
+                    "kalm_subproject": {
+                    "name": "SUBPROJECT",
+                    "gecos": "Anible on ansible automation server"
+                     }
+                  },
+            "type": "static"
+          }
+        ],
+        "hosts": [
+          {
+            "name": "SUBPROJECT.it.rm.dk", 
+            "description": "Server running kalm automation service", 
+            "inventories": ["xxx_SUBPROJECT_inventory"], 
+            "labels": ["kalmservice"]
+          }
+        ],
+        "templates": [
+          {
+            "name": "xxx kalm subproject checkup",
+            "description": "KALM job for checking connectivity and ability to run SUBPROJECT",
+            "job_type": "run",
+            "inventory": "xxx_SUBPROJECT_inventory",
+            "project": "SUBPROJECT",
+            "EE": "Automation Hub Default execution environment",
+            "credentials": "SUBPROJECTserver",
+            "playbook": "checkup.yml"
+          },
+          {
+            "name": "xxx kalm subproject manager",
+            "description": "Maintain kalm subproject",
+            "job_type": "run",
+            "inventory": "xxx_SUBPROJECT_inventory",
+            "project": "SUBPROJECT",
+            "EE": "Automation Hub Default execution environment",
+            "credentials": "SUBPROJECTserver",
+            "playbook": "SUBPROJECT.yml"
+          }
+        ],
+        "schedules": [
+          {
+            "name": "xxx kalm subproject checkup",
+            "type": "job",
+            "template": "xxx kalm subproject checkup",
+            "description": "Schedule for checking connectivity and ability to run SUBPROJECT",
+            "local_time_zone": "CET",
+            "run_every_minute": "5",
+            "start": "now",
+            "end": "never"
+          },
+          {
+            "name": "xxx kalm subproject manager",
+            "type": "job",
+            "template": "xxx kalm subproject manager",
+            "description": "Master job updating automation manager for SUBPROJECT",
+            "local_time_zone": "CET",
+            "run_every_minute": "5",
+            "start": "now",
+            "end": "never"
+          },
+          {
+            "name": "xxx kalm subproject main",
+            "type": "project",
+            "project": "SUBPROJECT",
+            "description": "Master job for syncing project SUBPROJECT",
+            "local_time_zone": "CET",
+            "run_every_minute": "10",
+            "start": "now",
+            "end": "never"
+          }
+        ]
+      }
+    ]
+  }
+  
+

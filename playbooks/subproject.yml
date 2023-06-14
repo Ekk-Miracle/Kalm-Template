@@ -1,0 +1,17 @@
+- name: "subprojct | install subproject"
+  hosts: all
+  tasks:
+  - name: "kalm| subproject" | ping target subproject"
+    ansible.builtin.ping
+    become: yes
+# Here are the actions to be performed on the subproject
+
+
+
+
+
+
+
+
+
+

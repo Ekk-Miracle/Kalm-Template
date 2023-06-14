@@ -1,0 +1,12 @@
+kalm_serviceaccount:
+  - name  "kalm"
+  - gecos "Automation user for ansible automation" 
+  - group "kalm"
+  - home "/opt/kalm"
+  - shell "/bin/bash"
+  - system yes
+  - createhome yes
+  - state present
+
+customer_custumizations:
+  - logo: "https://raw.githubusercontent.com/kalmhq/kalm/master/docs/images/kalm-logo.png"
